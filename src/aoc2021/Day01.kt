@@ -1,3 +1,7 @@
+package aoc2021
+
+import readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         return input.size
