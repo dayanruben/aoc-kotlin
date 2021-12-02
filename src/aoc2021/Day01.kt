@@ -2,10 +2,9 @@ package aoc2021
 
 import readInput
 
-const val year = "2021"
-const val day = "Day01"
-
 fun main() {
+    val (year, day) = "2021" to "Day01"
+
     fun part1(input: List<Int>) =
         countIncreased(input)
 
@@ -13,7 +12,7 @@ fun main() {
         countIncreased(input.windowed(size = 3, step = 1).map { it.sum() })
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput(name = "${day}_test", year = year)
+    val testInput = readInput(name = day, year = year)
     check(testInput.size == 2000)
 
     val input = readInput(name = day, year = year).map { it.toInt() }
