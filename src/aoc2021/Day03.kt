@@ -43,8 +43,13 @@ fun main() {
         return oxygen.first().toInt(2) * co2.first().toInt(2)
     }
 
+    val testInput = readInput(name = "${day}_test", year = year)
     val input = readInput(name = day, year = year)
+
+    check(part1(testInput) == 198)
     println(part1(input))
+
+    check(part2(testInput) == 230)
     println(part2(input))
 }
 

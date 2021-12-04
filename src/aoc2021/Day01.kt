@@ -11,12 +11,13 @@ fun main() {
     fun part2(input: List<Int>) =
         countIncreased(input.windowed(size = 3, step = 1).map { it.sum() })
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput(name = day, year = year)
-    check(testInput.size == 2000)
-
+    val testInput = readInput(name = "${day}_test", year = year).map { it.toInt() }
     val input = readInput(name = day, year = year).map { it.toInt() }
+
+    check(part1(testInput) == 7)
     println(part1(input))
+
+    check(part2(testInput) == 5)
     println(part2(input))
 }
 
