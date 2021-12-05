@@ -45,21 +45,15 @@ fun playBingo(
 ): Int {
     val boardBingo = BooleanArray(boards.size)
     var bingoLeft = boards.size
-    var hasZero = false
+    var markedNumbers = mutableSetOf<Int>()
 
     numbers.forEach { number ->
-        if (number == 0) hasZero = true
+        markedNumbers += number
+
         boards.forEachIndexed { index, board ->
             if (boardBingo[index]) return@forEachIndexed
 
-            board.forEach { row ->
-                row.forEachIndexed { index, value ->
-                    if (value == number) {
-                        row[index] *= -1
-                    }
-                }
-            }
-            val (bingo, sum) = board.checkBoard(hasZero)
+            val (bingo, sum) = board.checkBoard(markedNumbers)
             if (bingo) {
                 boardBingo[index] = bingo
                 if (firstFound || --bingoLeft == 0) {
@@ -72,19 +66,19 @@ fun playBingo(
     return 0
 }
 
-fun List<List<Int>>.sumBoard(): Int {
-    return sumOf { it.filter { it > 0 }.sum() }
+fun List<List<Int>>.sumBoard(markedNumbers: Set<Int>): Int {
+    return sumOf { it.filter { number -> number !in markedNumbers }.sum() }
 }
 
-fun List<List<Int>>.checkBoard(hasZero: Boolean): Pair<Boolean, Int> {
+fun List<List<Int>>.checkBoard(markedNumbers: Set<Int>): Pair<Boolean, Int> {
     for (row in indices) {
-        val bingo = this[row].all { if (hasZero) it <= 0 else it < 0 }
-        if (bingo) return Pair(true, sumBoard())
+        val bingo = this[row].all { it in markedNumbers }
+        if (bingo) return Pair(true, sumBoard(markedNumbers))
     }
 
     for (col in this[0].indices) {
-        val bingo = all { if (hasZero) it[col] <= 0 else it[col] < 0 }
-        if (bingo) return Pair(true, sumBoard())
+        val bingo = all { it[col] in markedNumbers }
+        if (bingo) return Pair(true, sumBoard(markedNumbers))
     }
 
     return false to 0
