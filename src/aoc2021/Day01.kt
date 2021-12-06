@@ -5,6 +5,18 @@ import readInput
 fun main() {
     val (year, day) = "2021" to "Day01"
 
+    fun countIncreased(input: List<Int>) = when {
+        input.isEmpty() -> 0
+        else -> {
+            var pivot = input.first()
+            input.drop(1).count {
+                val increased = it > pivot
+                pivot = it
+                increased
+            }
+        }
+    }
+
     fun part1(input: List<Int>) =
         countIncreased(input)
 
@@ -19,16 +31,4 @@ fun main() {
 
     check(part2(testInput) == 5)
     println(part2(input))
-}
-
-fun countIncreased(input: List<Int>) = when {
-    input.isEmpty() -> 0
-    else -> {
-        var pivot = input.first()
-        input.drop(1).count {
-            val increased = it > pivot
-            pivot = it
-            increased
-        }
-    }
 }

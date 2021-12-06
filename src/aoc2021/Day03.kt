@@ -5,6 +5,18 @@ import readInput
 fun main() {
     val (year, day) = "2021" to "Day03"
 
+    fun List<String>.countBits(index: Int): Pair<Int, Int> {
+        var zeros = 0
+        var ones = 0
+        this.forEach {
+            when (it[index]) {
+                '0' -> zeros++
+                '1' -> ones++
+            }
+        }
+        return zeros to ones
+    }
+
     fun part1(input: List<String>): Int {
         val length = input.first().length
 
@@ -51,16 +63,4 @@ fun main() {
 
     check(part2(testInput) == 230)
     println(part2(input))
-}
-
-fun List<String>.countBits(index: Int): Pair<Int, Int> {
-    var zeros = 0
-    var ones = 0
-    this.forEach {
-        when (it[index]) {
-            '0' -> zeros++
-            '1' -> ones++
-        }
-    }
-    return zeros to ones
 }
