@@ -21,26 +21,30 @@ fun main() {
             }
 
             val flashed = mutableSetOf<Int>()
-            while (toFlash.isNotEmpty()) {
-                val index = toFlash.removeFirst()
-                energy[index] = 0
-                if (index !in flashed) {
-                    flashed += index
-                    for (dx in -1..1) {
-                        for (dy in -1..1) {
-                            val x = index % 10 + dx
-                            val y = index / 10 + dy
-                            if (x in 0..9 && y in 0..9) {
-                                val p = y * 10 + x
-                                if (p !in flashed) {
-                                    energy[p] += 1
-                                    if (energy[p] == 10) {
-                                        toFlash.addLast(p)
-                                    }
+            fun flash(index: Int) {
+                flashed += index
+                for (dx in -1..1) {
+                    for (dy in -1..1) {
+                        val x = index % 10 + dx
+                        val y = index / 10 + dy
+                        if (x in 0..9 && y in 0..9) {
+                            val p = y * 10 + x
+                            if (p !in flashed) {
+                                energy[p] += 1
+                                if (energy[p] == 10) {
+                                    toFlash.addLast(p)
                                 }
                             }
                         }
                     }
+                }
+            }
+
+            while (toFlash.isNotEmpty()) {
+                val index = toFlash.removeFirst()
+                energy[index] = 0
+                if (index !in flashed) {
+                    flash(index)
                 }
             }
 
