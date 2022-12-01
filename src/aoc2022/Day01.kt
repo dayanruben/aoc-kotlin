@@ -1,34 +1,24 @@
 package aoc2022
 
 import readInput
+import readInputText
 
 fun main() {
     val (year, day) = "2022" to "Day01"
 
-    fun sumTopCalories(input: List<String>, top: Int): Int {
-        var acc = 0
-        val cals = mutableListOf<Int>()
-        input.forEach {
-            if (it.isEmpty()) {
-                cals.add(acc)
-                acc = 0
-            }
-            else {
-                acc += it.toInt()
-            }
-        }
-        cals.add(acc)
+    fun sumTopCalories(input: String, top: Int): Int {
+        val cals = input.split("\n\n").map { it.lines().sumOf { cal -> cal.toInt() } }
         return cals.sortedDescending().take(top).sum()
     }
 
-    fun part1(input: List<String>) =
+    fun part1(input: String) =
         sumTopCalories(input, 1)
 
-    fun part2(input: List<String>) =
+    fun part2(input: String) =
         sumTopCalories(input, 3)
 
-    val testInput = readInput(name = "${day}_test", year = year)
-    val input = readInput(name = day, year = year)
+    val testInput = readInputText(name = "${day}_test", year = year)
+    val input = readInputText(name = day, year = year)
 
     check(part1(testInput) == 24000)
     println(part1(input))
