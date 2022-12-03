@@ -9,8 +9,8 @@ fun main() {
 
     fun part1(input: List<String>) =
         input.sumOf { rucksack ->
-            val first = rucksack.substring(0, rucksack.length / 2)
-            val second = rucksack.substring(rucksack.length / 2, rucksack.length)
+            val half = rucksack.length / 2
+            val (first, second) = rucksack.windowed(half, half)
             val common = first.find { it in second } ?: ' '
             priority(common)
         }
