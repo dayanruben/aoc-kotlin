@@ -1,28 +1,54 @@
 package aoc2023
 
 import readInput
-import readInputText
 
 fun main() {
     val (year, day) = "2023" to "Day01"
 
-    fun sumTopCalories(input: String, top: Int): Int {
-        val cals = input.split("\n\n").map { it.lines().sumOf { cal -> cal.toInt() } }
-        return cals.sortedDescending().take(top).sum()
-    }
+    fun part1(input: List<String>) = input.map { line ->
+        val digits = line.filter { it.isDigit() }
+        "${digits.first()}${digits.last()}".toInt()
+    }.sum()
 
-    fun part1(input: String) =
-        sumTopCalories(input, 1)
+    val digitsMap = mapOf(
+        "one" to "1",
+        "two" to "2",
+        "three" to "3",
+        "four" to "4",
+        "five" to "5",
+        "six" to "6",
+        "seven" to "7",
+        "eight" to "8",
+        "nine" to "9",
+    )
 
-    fun part2(input: String) =
-        sumTopCalories(input, 3)
+    fun part2(input: List<String>) = input.map { line ->
+        val digits = buildString {
+            for (i in line.indices) {
+                if (line[i].isDigit()) {
+                    append(line[i])
+                }
+                else {
+                    val sub = line.substring(startIndex = i)
+                    for ((word, num) in digitsMap) {
+                        if (sub.startsWith(word)) {
+                            append(num)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        "${digits.first()}${digits.last()}".toInt()
+    }.sum()
 
-    val testInput = readInputText(name = "${day}_test", year = year)
-    val input = readInputText(name = day, year = year)
+    val testInput1 = readInput(name = "${day}_p1_test", year = year)
+    val testInput2 = readInput(name = "${day}_p2_test", year = year)
+    val input = readInput(name = day, year = year)
 
-    check(part1(testInput) == 24000)
+    check(part1(testInput1) == 142)
     println(part1(input))
 
-    check(part2(testInput) == 45000)
+    check(part2(testInput2) == 281)
     println(part2(input))
 }
