@@ -5,11 +5,6 @@ import readInput
 fun main() {
     val (year, day) = "2023" to "Day01"
 
-    fun part1(input: List<String>) = input.map { line ->
-        val digits = line.filter { it.isDigit() }
-        "${digits.first()}${digits.last()}".toInt()
-    }.sum()
-
     val digitsMap = mapOf(
         "one" to "1",
         "two" to "2",
@@ -20,27 +15,40 @@ fun main() {
         "seven" to "7",
         "eight" to "8",
         "nine" to "9",
-    )
+        )
 
-    fun part2(input: List<String>) = input.map { line ->
-        val digits = buildString {
-            for (i in line.indices) {
-                if (line[i].isDigit()) {
-                    append(line[i])
-                }
-                else {
-                    val sub = line.substring(startIndex = i)
-                    for ((word, num) in digitsMap) {
-                        if (sub.startsWith(word)) {
-                            append(num)
-                            break
+    fun String.filterDigits(withWords: Boolean): String {
+        return if (!withWords) {
+            this.filter { it.isDigit() }
+        } else {
+            val line = this
+            buildString {
+                for (i in line.indices) {
+                    if (line[i].isDigit()) {
+                        append(line[i])
+                    }
+                    else {
+                        val sub = line.substring(startIndex = i)
+                        for ((word, num) in digitsMap) {
+                            if (sub.startsWith(word)) {
+                                append(num)
+                                break
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    fun List<String>.sumFilteredDigits(withWords: Boolean) = this.sumOf { line ->
+        val digits = line.filterDigits(withWords)
         "${digits.first()}${digits.last()}".toInt()
-    }.sum()
+    }
+
+    fun part1(input: List<String>) = input.sumFilteredDigits(withWords = false)
+
+    fun part2(input: List<String>) = input.sumFilteredDigits(withWords = true)
 
     val testInput1 = readInput(name = "${day}_p1_test", year = year)
     val testInput2 = readInput(name = "${day}_p2_test", year = year)
