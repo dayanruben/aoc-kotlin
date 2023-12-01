@@ -6,16 +6,16 @@ fun main() {
     val (year, day) = "2023" to "Day01"
 
     val digitsMap = mapOf(
-        "one" to "1",
-        "two" to "2",
-        "three" to "3",
-        "four" to "4",
-        "five" to "5",
-        "six" to "6",
-        "seven" to "7",
-        "eight" to "8",
-        "nine" to "9",
-        )
+            "one" to "1",
+            "two" to "2",
+            "three" to "3",
+            "four" to "4",
+            "five" to "5",
+            "six" to "6",
+            "seven" to "7",
+            "eight" to "8",
+            "nine" to "9",
+    )
 
     fun String.filterDigits(withWords: Boolean): String {
         return if (!withWords) {
@@ -26,8 +26,7 @@ fun main() {
                 for (i in line.indices) {
                     if (line[i].isDigit()) {
                         append(line[i])
-                    }
-                    else {
+                    } else {
                         val sub = line.substring(startIndex = i)
                         for ((word, num) in digitsMap) {
                             if (sub.startsWith(word)) {
