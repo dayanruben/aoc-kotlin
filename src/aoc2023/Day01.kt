@@ -1,5 +1,6 @@
 package aoc2023
 
+import checkValue
 import readInput
 
 fun main() {
@@ -53,9 +54,9 @@ fun main() {
     val testInput2 = readInput(name = "${day}_p2_test", year = year)
     val input = readInput(name = day, year = year)
 
-    check(part1(testInput1) == 142)
+    checkValue(part1(testInput1), 142)
     println(part1(input))
 
-    check(part2(testInput2) == 281)
+    checkValue(part2(testInput2), 281)
     println(part2(input))
 }
