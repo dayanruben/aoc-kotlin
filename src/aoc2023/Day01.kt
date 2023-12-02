@@ -1,28 +1,61 @@
 package aoc2023
 
 import readInput
-import readInputText
 
 fun main() {
     val (year, day) = "2023" to "Day01"
 
-    fun sumTopCalories(input: String, top: Int): Int {
-        val cals = input.split("\n\n").map { it.lines().sumOf { cal -> cal.toInt() } }
-        return cals.sortedDescending().take(top).sum()
+    val digitsMap = mapOf(
+            "one" to "1",
+            "two" to "2",
+            "three" to "3",
+            "four" to "4",
+            "five" to "5",
+            "six" to "6",
+            "seven" to "7",
+            "eight" to "8",
+            "nine" to "9",
+    )
+
+    fun String.filterDigits(withWords: Boolean): String {
+        return if (!withWords) {
+            this.filter { it.isDigit() }
+        } else {
+            val line = this
+            buildString {
+                for (i in line.indices) {
+                    if (line[i].isDigit()) {
+                        append(line[i])
+                    } else {
+                        val sub = line.substring(startIndex = i)
+                        for ((word, num) in digitsMap) {
+                            if (sub.startsWith(word)) {
+                                append(num)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    fun part1(input: String) =
-        sumTopCalories(input, 1)
+    fun List<String>.sumFilteredDigits(withWords: Boolean) = this.sumOf { line ->
+        val digits = line.filterDigits(withWords)
+        "${digits.first()}${digits.last()}".toInt()
+    }
 
-    fun part2(input: String) =
-        sumTopCalories(input, 3)
+    fun part1(input: List<String>) = input.sumFilteredDigits(withWords = false)
 
-    val testInput = readInputText(name = "${day}_test", year = year)
-    val input = readInputText(name = day, year = year)
+    fun part2(input: List<String>) = input.sumFilteredDigits(withWords = true)
 
-    check(part1(testInput) == 24000)
+    val testInput1 = readInput(name = "${day}_p1_test", year = year)
+    val testInput2 = readInput(name = "${day}_p2_test", year = year)
+    val input = readInput(name = day, year = year)
+
+    check(part1(testInput1) == 142)
     println(part1(input))
 
-    check(part2(testInput) == 45000)
+    check(part2(testInput2) == 281)
     println(part2(input))
 }
