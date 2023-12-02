@@ -42,7 +42,7 @@ fun main() {
         val maxCubes = mutableMapOf("red" to 0, "green" to 0, "blue" to 0)
         sets.forEach { set ->
             set.forEach { (color, cubes) ->
-                maxCubes[color] = maxOf(maxCubes[color]!!, cubes)
+                maxCubes[color] = maxOf(maxCubes[color] ?: 0, cubes)
             }
         }
 
