@@ -7,13 +7,13 @@ fun main() {
     val (year, day) = "2023" to "Day02"
 
     fun gameSets(game: String) =
-        game.split(";").map {
-            it.trim().split(",").map {
-                val (cubesStr, color) = it.trim().split(" ")
-                val cubes = cubesStr.toInt()
-                color to cubes
+            game.split(";").map {
+                it.trim().split(",").map {
+                    val (cubesStr, color) = it.trim().split(" ")
+                    val cubes = cubesStr.toInt()
+                    color to cubes
+                }
             }
-        }
 
     fun gamePossibility(game: String): Int {
         val (gameId, gameInfo) = game.split(":")
@@ -53,13 +53,12 @@ fun main() {
 
     fun part2(input: List<String>) = input.sumOf { gamePower(it) }
 
-    val testInput1 = readInput(name = "${day}_p1_test", year = year)
-    val testInput2 = readInput(name = "${day}_p2_test", year = year)
+    val testInput = readInput(name = "${day}_test", year = year)
     val input = readInput(name = day, year = year)
 
-    checkValue(part1(testInput1), 8)
+    checkValue(part1(testInput), 8)
     println(part1(input))
 
-    checkValue(part2(testInput2), 2286)
+    checkValue(part2(testInput), 2286)
     println(part2(input))
 }
