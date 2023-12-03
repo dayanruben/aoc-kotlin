@@ -106,13 +106,12 @@ fun main() {
         }
     }
 
-    val testInput1 = readInput(name = "${day}_p1_test", year = year)
-    val testInput2 = readInput(name = "${day}_p2_test", year = year)
+    val testInput = readInput(name = "${day}_test", year = year)
     val input = readInput(name = day, year = year)
 
-    checkValue(part1(testInput1), 4361)
+    checkValue(part1(testInput), 4361)
     println(part1(input))
 
-    checkValue(part2(testInput2), 467835)
+    checkValue(part2(testInput), 467835)
     println(part2(input))
 }
