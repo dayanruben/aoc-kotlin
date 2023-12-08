@@ -8,51 +8,41 @@ fun main() {
 
     fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
     fun lcm(a: Long, b: Long): Long = (a * b) / gcd(a, b)
-    fun LongArray.lcm() = this.reduce { acc, n -> lcm(acc, n) }
+    fun List<Long>.lcm() = this.reduce { acc, n -> lcm(acc, n) }
 
     fun parse(input: List<String>): Pair<String, Map<String, Pair<String, String>>> {
         val inst = input.first()
-        val networkMap = mutableMapOf<String, Pair<String, String>>()
-        input.drop(2).forEach { line ->
+        val networkMap = input.drop(2).associate { line ->
             val (node, lr) = line.split(" = ")
             val (left, right) = lr.drop(1).dropLast(1).split(", ")
-            networkMap[node] = left to right
+            node to (left to right)
         }
         return inst to networkMap
     }
 
-    fun part1(input: List<String>): Int {
-        val (inst, networkMap) = parse(input)
+    fun minSteps(inst: String, networkMap: Map<String, Pair<String, String>>, start: String, isEnd: (String) -> Boolean): Long {
         var steps = 0
-        var current = "AAA"
-        while (current != "ZZZ") {
+        var current = start
+        while (!isEnd(current)) {
             current = when (inst[steps % inst.length]) {
                 'L' -> networkMap[current]?.first ?: ""
                 else -> networkMap[current]?.second ?: ""
             }
             steps++
         }
-        return steps
+        return steps.toLong()
+    }
+
+    fun part1(input: List<String>): Long {
+        val (inst, networkMap) = parse(input)
+        return minSteps(inst, networkMap, "AAA") { it == "ZZZ" }
     }
 
     fun part2(input: List<String>): Long {
         val (inst, networkMap) = parse(input)
-        var steps = 0
-        var current = networkMap.keys.filter { it.last() == 'A' }
-        val mins = LongArray(current.size) { -1 }
-        while (mins.any { it < 0 }) {
-            current = when (inst[steps % inst.length]) {
-                'L' -> current.map { networkMap[it]?.first ?: "" }
-                else -> current.map { networkMap[it]?.second ?: "" }
-            }
-            steps++
-            current.forEachIndexed { index, node ->
-                if (node.last() == 'Z' && mins[index] < 0) {
-                    mins[index] = steps.toLong()
-                }
-            }
-        }
-        return mins.lcm()
+        return networkMap.keys.filter { it.last() == 'A' }.map { start ->
+            minSteps(inst, networkMap, start) { it.last() == 'Z' }
+        }.lcm()
     }
 
     val testInput1 = readInput(name = "${day}_p1_test1", year = year)
