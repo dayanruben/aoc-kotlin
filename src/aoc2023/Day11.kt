@@ -2,6 +2,7 @@ package aoc2023
 
 import checkValue
 import readInput
+import kotlin.math.abs
 
 fun main() {
     val (year, day) = "2023" to "Day11"
@@ -31,18 +32,9 @@ fun main() {
             galaxy.col += expandedCols
         }
 
-        var sum = 0L
-        for (i in galaxies.indices) {
-            for (j in i + 1 until galaxies.size) {
-                val gal1 = galaxies[i]
-                val gal2 = galaxies[j]
-                val (minRow, maxRow) = listOf(gal1.row, gal2.row).sorted()
-                val (minCol, maxCol) = listOf(gal1.col, gal2.col).sorted()
-                val steps = maxRow - minRow + maxCol - minCol
-                sum += steps.toLong()
-            }
+        return galaxies.allPairs().sumOf { (gal1, gal2) ->
+            (abs(gal1.row - gal2.row) + abs(gal1.col - gal2.col)).toLong()
         }
-        return sum
     }
 
     fun part1(input: List<String>) = sumPaths(input, 2)
@@ -61,3 +53,13 @@ fun main() {
 }
 
 data class Galaxy(var row: Int, var col: Int)
+
+fun <T> List<T>.allPairs(): List<Pair<T, T>> {
+    val pairs = mutableListOf<Pair<T, T>>()
+    for (i in 0..<this.size - 1) {
+        for (j in i + 1..<this.size) {
+            pairs.add(Pair(this[i], this[j]))
+        }
+    }
+    return pairs
+}
