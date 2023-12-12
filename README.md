@@ -4,14 +4,9 @@
 [![Amper](https://img.shields.io/badge/Amper-gray.svg?logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMzYgMzZINEwyNi4yMTE3IDRIMzUuOTc3OEwzNiAzNlpNMjYuMDY2NiAxOS42MDgzTDIxLjQ0MzkgMjYuMjY4MUgyNi4wNjY2VjE5LjYwODNaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMzc3Ml8xNTQpIi8+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzM3NzJfMTU0IiB4MT0iMTEuODcwMyIgeTE9IjExLjg3NzgiIHgyPSIzNi4yOTAzIiB5Mj0iMzYuMjg3MSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4yMTIxNyIgc3RvcC1jb2xvcj0iIzNCRUE2MiIvPjxzdG9wIG9mZnNldD0iMC43NTI1NCIgc3RvcC1jb2xvcj0iIzA4N0NGQSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==)](https://github.com/jetbrains/amper)
 [![Build](https://github.com/dayanruben/aoc-kotlin/actions/workflows/push-main.yaml/badge.svg?branch=main)](https://github.com/dayanruben/aoc-kotlin/actions/workflows/push-main.yaml)
 
-Welcome to the Advent of Code[^aoc] Kotlin project created by [dayanruben][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
-
 ![][file:cover]
 
-[Advent of Code][aoc] – an annual event in December since 2015.
-Every year since then, with the first day of December, a programming puzzles contest is published every day for twenty-four days.
-A set of Christmas-oriented challenges provides any input you have to use to answer using the language of your choice.
-We offer you a template prepared to use with [Kotlin][kotlin] language within this repository.
+Welcome to the Advent of Code[^aoc] Kotlin project created by [dayanruben][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
 
 In this repository, [dayanruben][dayanruben] is about to provide solutions for the puzzles using [Kotlin][kotlin] language.
 
