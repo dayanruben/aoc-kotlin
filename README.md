@@ -9,7 +9,7 @@ In this repository, [dayanruben][dayanruben] is about to provide solutions for t
 
 > [!NOTE]
 >
-> This repository utilizes the Amper tool for project configuration, recently [introduced by JetBrains][amper].
+> This repository utilizes the [Amper][amper] tool for project configuration, recently [introduced by JetBrains][amper-announcement].
 
 ## Getting help
 
@@ -32,4 +32,5 @@ If you stuck with Kotlin-specific questions or anything related to this template
 [kotlin]: https://kotlinlang.org
 [slack]: https://surveys.jetbrains.com/s3/kotlin-slack-sign-up
 [template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
-[amper]: https://blog.jetbrains.com/blog/2023/11/09/amper-improving-the-build-tooling-user-experience/
+[amper]: https://github.com/dayanruben/amper
+[amper-announcement]: https://blog.jetbrains.com/blog/2023/11/09/amper-improving-the-build-tooling-user-experience/
