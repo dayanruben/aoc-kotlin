@@ -1,4 +1,4 @@
-rootProject.name = "Advent of Code Kotlin"
+rootProject.name = "Advent of Code with Kotlin"
 
 pluginManagement {
     repositories {

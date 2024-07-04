@@ -227,3 +227,6 @@ gradle-app.setting
 ### Resources files ###
 res/*
 *.txt
+
+### Kotlin ###
+.kotlin
