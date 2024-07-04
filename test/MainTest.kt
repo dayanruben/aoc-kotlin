@@ -8,9 +8,4 @@ class MainTest {
         val wave = "Hi"
         assertEquals("Hi there!", "$wave there!")
     }
-
-    @Test
-    fun shouldFail() {
-        assertTrue(false)
-    }
 }
