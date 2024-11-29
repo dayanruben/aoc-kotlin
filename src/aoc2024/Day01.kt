@@ -6,7 +6,7 @@ import readInput
 fun main() {
     val (year, day) = "2024" to "Day01"
 
-    fun List<String>.test() = this.sumOf { line -> line }
+    fun List<String>.test() = this.sumOf { it.toInt() }
 
     fun part1(input: List<String>) = input.test()
 
