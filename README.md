@@ -35,7 +35,7 @@ A set of Christmas-oriented challenges provide any input you have to use to answ
 
 [template]: https://github.com/kotlin-hands-on/advent-of-code-kotlin-template
 
-[amper]: https://github.com/dayanruben/amper
+[amper]: https://github.com/jetbrains/amper
 
 [amper-announcement]: https://blog.jetbrains.com/blog/2023/11/09/amper-improving-the-build-tooling-user-experience/
 
