@@ -1,3 +1,5 @@
-product: 
-  type: jvm/app
-  kotlin: "2.2.20"
+product: jvm/app
+
+settings:
+  kotlin:
+    languageVersion: 2.2
