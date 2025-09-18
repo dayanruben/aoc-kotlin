@@ -1,1 +1,3 @@
-product: jvm/app
+product: 
+  type: jvm/app
+  kotlin: "2.2.20"
