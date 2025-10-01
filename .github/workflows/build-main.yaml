@@ -19,7 +19,7 @@ jobs:
                   java-version: '23'
 
             - name: Setup Gradle
-              uses: gradle/actions/setup-gradle@v4
+              uses: gradle/actions/setup-gradle@v5
 
             - name: Gradle Build
               run: ./gradlew build
